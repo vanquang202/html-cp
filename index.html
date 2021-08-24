@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>scrollorama</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="author" href="https://plus.google.com/107766061849006545830" />
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.lettering-0.6.1.min.js"></script>
+    <script src="js/jquery.scrollorama.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .img-magnifier-container {
+            position: relative;
+        }
+        
+        .img-magnifier-glass {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid black;
+            box-shadow: 0 0 0 5px yellow, 0 0 0 6px white, 0 0 0 7px red;
+            /*Set the size of the magnifier glass:*/
+            width: 200px;
+            height: 200px;
+        }
+        
+        .img {
+            z-index: 1000;
+            width: 100%;
+            height: 4000px;
+            opacity: 0;
+        }
+        
+        .div {
+            position: fixed;
+            top: 2%;
+            left: 2%;
+            z-index: 5000;
+            padding: 5px;
+            color: rgb(255, 255, 255);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            background-color: brown
+        }
+        
+        .div2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5000;
+            padding: 5000px;
+            color: rgb(255, 255, 255);
+            overflow: hidden;
+            justify-content: center;
+            text-align: center;
+            background-color: rgb(255, 255, 255)
+        }
+        
+        .abc {
+            position: relative;
+            background-color: rgba(204, 204, 204, .5);
+            justify-content: center;
+        }
+        
+        .abc h1 {
+            width: 200%;
+            position: absolute;
+            font-size: 400px;
+            padding-top: 130px;
+        }
+    </style>
+    <script>
+        function magnify(imgID, zoom) {
+            var img, glass, w, h, bw;
+            img = document.getElementById(imgID);
+            /*create magnifier glass:*/
+            glass = document.createElement("DIV");
+            glass.setAttribute("class", "img-magnifier-glass");
+            /*insert magnifier glass:*/
+            img.parentElement.insertBefore(glass, img);
+            /*set background properties for the magnifier glass:*/
+            glass.style.backgroundImage = "url('" + img.src + "')";
+            glass.style.backgroundRepeat = "no-repeat";
+            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+            bw = 3;
+            w = glass.offsetWidth / 2;
+            h = glass.offsetHeight / 2;
+            /*execute a function when someone moves the magnifier glass over the image:*/
+            glass.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mousemove", moveMagnifier);
+            /*and also for touch screens:*/
+            glass.addEventListener("touchmove", moveMagnifier);
+            img.addEventListener("touchmove", moveMagnifier);
+
+            function moveMagnifier(e) {
+                var pos, x, y;
+                /*prevent any other actions that may occur when moving over the image*/
+                e.preventDefault();
+                /*get the cursor's x and y positions:*/
+                pos = getCursorPos(e);
+                x = pos.x;
+                y = pos.y;
+                /*prevent the magnifier glass from being positioned outside the image:*/
+                if (x > img.width - (w / zoom)) {
+                    x = img.width - (w / zoom);
+                }
+                if (x < w / zoom) {
+                    x = w / zoom;
+                }
+                if (y > img.height - (h / zoom)) {
+                    y = img.height - (h / zoom);
+                }
+                if (y < h / zoom) {
+                    y = h / zoom;
+                }
+                /*set the position of the magnifier glass:*/
+                glass.style.left = (x - w) + "px";
+                glass.style.top = (y - h) + "px";
+                /*display what the magnifier glass "sees":*/
+                glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+            }
+
+            function getCursorPos(e) {
+                var a, x = 0,
+                    y = 0;
+                e = e || window.event;
+                /*get the x and y positions of the image:*/
+                a = img.getBoundingClientRect();
+                /*calculate the cursor's x and y coordinates, relative to the image:*/
+                x = e.pageX - a.left;
+                y = e.pageY - a.top;
+                /*consider any page scrolling:*/
+                x = x - window.pageXOffset;
+                y = y - window.pageYOffset;
+                return {
+                    x: x,
+                    y: y
+                };
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="div2">
+        <h1>Hello...</h1>
+        <p>I'm VanQuang</p>
+    </div>
+    <div class="div">
+        VQ
+    </div>
+    <img style="position: fixed;left:0;right:0;width:100%;top:-10%" src="./aston-ma.jpg" alt="">
+    <div class="scrollblock" id="intro">
+        <h1 id="title">Van Quang</h1>
+        <p id="author">
+            <script>
+                ! function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");
+            </script>
+        </p>
+    </div>
+    <br><br>
+    <div class="scrollblock" id="examples-transition">
+        <h2>Contacts</h2>
+        <h3 id="fade-in">Facebook : Van Quang</h3>
+        <h3 id="fly-in">Phone : 0944389486</h3>
+        <h3 id="rotate-in">Instagram : vq812</h3>
+        <h3 id="zoom-in">Email : tvq08122002@gmail.com</h3>
+        <p id="any"><small><span class="accent"></span> Good <span class="accent"></span></small></p>
+    </div>
+
+    <div class="scrollblock" id="examples-pin">
+        <h2>Fontend</h2>
+        <h3 id="unpin">ABC</h3>
+    </div>
+
+    <div class="scrollblock" id="examples-parallax">
+        <h2 id="parallax1">Parallax</h2>
+        <h3 id="parallax2">Parallax</h3>
+        <h3 id="parallax3">Parallax</h3>
+    </div>
+    <div class="scrollblock abc" id="examples-parallax">
+        <h1 id="word">Word word</h1>
+    </div>
+
+    <div class="scrollblock " id="examples-easing">
+        <h2 id="easing">Have a good day</h2>
+        <div id="easing_bottom"></div>
+    </div>
+
+    <div class="img-magnifier-container">
+        <img class="img" id="myimage" src="./aston-ma1.jpg" width="600" height="400">
+        <h1 style="position:absolute; top:40%;left:40% ; transform: translate(-30%, -40%);">Backend</h1>
+    </div>
+    <script>
+        /* Initiate Magnify Function
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        with the id of the image, and the strength of the magnifier glass:*/
+        magnify("myimage", 3);
+    </script>
+    <script>
+        $(window).on('load', function() {
+            $('.div2').delay(3000).fadeOut('fast');
+            // alert('Tai khoan : database@gmail.com')
+            // alert('Mat khau : 111')
+        })
+        $(document).ready(function() {
+
+            // initialize the plugin, pass in the class selector for the sections of content (blocks)
+            var scrollorama = $.scrollorama({
+                blocks: '.scrollblock'
+            });
+
+            // assign function to add behavior for onBlockChange event
+            scrollorama.onBlockChange(function() {
+                var i = scrollorama.blockIndex;
+                $('#console')
+                    .css('display', 'block')
+                    .text('onBlockChange | blockIndex:' + i + ' | current block: ' + scrollorama.settings.blocks.eq(i).attr('id'));
+            });
+
+            // lettering.js for coolness  
+            $('.char9').css('padding-left', '6px');
+
+            // animate the title letters to explode
+            scrollorama
+                .animate('#title', {
+                    duration: 500,
+                    property: 'margin-left',
+                    star: 200,
+                    end: -1000
+                })
+                .animate('#author', {
+                    duration: 10,
+                    property: 'z-index',
+                    end: 0
+                });
+
+            $('#title span').each(function() {
+                scrollorama
+                    .animate($(this), {
+                        duration: 400,
+                        property: 'top',
+                        end: Math.random() * 120 - 180
+                    })
+                    .animate($(this), {
+                        duration: 300,
+                        property: 'rotate',
+                        start: 0,
+                        end: Math.random() * 720 - 360
+                    });
+            });
+
+            // animate some examples
+            scrollorama
+                .animate('#unpin', {
+                    duration: 500,
+                    property: 'padding-top',
+                    start: 400,
+                    pin: true
+                })
+                .animate('#fade-in', {
+                    delay: 400,
+                    duration: 300,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#fly-in', {
+                    delay: 400,
+                    duration: 300,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#rotate-in', {
+                    duration: 800,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#zoom-in', {
+                    delay: 200,
+                    duration: 600,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#any', {
+                    delay: 700,
+                    duration: 200,
+                    property: 'opacity',
+                    start: 0
+                })
+                .animate('#any', {
+                    delay: 800,
+                    duration: 200,
+                    property: 'letter-spacing',
+                    start: 18
+                });
+
+            // animate the parallaxing
+            scrollorama
+                .animate('#parallax2', {
+                    delay: 400,
+                    duration: 600,
+                    property: 'top',
+                    start: 800,
+                    end: -800
+                })
+                .animate('#parallax3', {
+                    delay: 200,
+                    duration: 1200,
+                    property: 'top',
+                    start: 500,
+                    end: -500
+                })
+                .animate('#word', {
+                    delay: 200,
+                    duration: 1400,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                });
+
+
+            // animate some easing examples
+            var $easing = $('#easing'),
+                $clone = $easing.clone().appendTo('#examples-easing')
+                .css({
+                    position: 'relative',
+                    top: '-2.95em'
+                })
+                .lettering();
+            $easing.css({
+                color: '#131420',
+                textShadow: '0 1px 0 #363959'
+            });
+            easing_array = ['easeOutBounce',
+                'easeOutQuad',
+                'easeOutCubic',
+                'easeOutQuart',
+                'easeOutQuint',
+                'easeOutExpo'
+            ];
+            $clone.find('span')
+                .each(function(idx, el) {
+                    scrollorama.animate($(this), {
+                        delay: 400,
+                        duration: 200,
+                        property: 'top',
+                        end: 300,
+                        easing: easing_array[idx]
+                    });
+                })
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2821890-9']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</body>
+
+</html>
