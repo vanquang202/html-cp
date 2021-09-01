@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>scrollorama</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Bowlby+One+SC' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="author" href="https://plus.google.com/107766061849006545830" />
+
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Marcellus+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://oss.maxcdn.com/libs/normalize-css/3.0.0/normalize.min.css" />
+    <style>
+        /**  
+ * DaisyJS Demo Styles
+ * by Waren Gonzaga
+ */
+        
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #momoland {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .wrapper {
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 0 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .wrapper>img {
+            width: 200px;
+            height: auto;
+        }
+        
+        h1 {
+            color: #ff5c5c;
+            font-size: 100px;
+            font-family: 'Marcellus SC', serif;
+            font-weight: 800;
+        }
+        
+        .btn {
+            top: 30px;
+            position: relative;
+            background: #ff5c5c;
+            color: #fff;
+            padding: 20px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            border-radius: 10px;
+            transition-duration: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #fff;
+            color: #ff5c5c;
+            transition-duration: 0.3s;
+        }
+        
+        span {
+            top: 70px;
+            display: block;
+            position: relative;
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        span>a {
+            color: #fff;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .tilter img {
+            max-width: 100%;
+            display: block;
+        }
+    </style>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.lettering-0.6.1.min.js"></script>
+    <script src="js/jquery.scrollorama.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: black;
+        }
+        
+        .img-magnifier-container {
+            position: relative;
+        }
+        
+        .img-magnifier-glass {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid black;
+            box-shadow: 0 0 0 5px yellow, 0 0 0 6px white, 0 0 0 7px red;
+            /*Set the size of the magnifier glass:*/
+            width: 200px;
+            height: 200px;
+        }
+        
+        .img {
+            z-index: 1000;
+            width: 100%;
+            height: 4000px;
+            opacity: 0;
+        }
+        
+        .div {
+            position: fixed;
+            top: 2%;
+            left: 2%;
+            z-index: 5000;
+            padding: 5px;
+            color: rgb(255, 255, 255);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            background-color: brown
+        }
+        
+        .div2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5000;
+            padding: 5000px;
+            color: rgb(255, 255, 255);
+            overflow: hidden;
+            justify-content: center;
+            text-align: center;
+            background-color: rgb(255, 255, 255)
+        }
+        
+        .abc {
+            position: relative;
+            background-color: rgba(204, 204, 204, .5);
+            justify-content: center;
+        }
+        
+        .abc h1 {
+            width: 200%;
+            position: absolute;
+            font-size: 400px;
+            padding-top: 130px;
+        }
+        
+        @media (max-width: 768px) {
+            #title {
+                margin: 158px auto;
+                position: relative;
+                z-index: 99;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="div2">
+        <h1>Hello...</h1>
+        <p>I'm VanQuang</p>
+    </div>
+    <div class="div"> VQ </div>
+    <div class="scrollblock" id="intro">
+        <div class="tilter">
+            <h1 style="margin: 158px auto;z-index: 0; font-size:200px" id="title">Van Quang</h1>
+        </div>
+        <p id="author">
+            <script>
+                ! function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");
+            </script>
+        </p>
+    </div>
+    <br><br>
+    <div style="position: absolute;
+    top: 800px;" class="scrollblock" id="examples-transition">
+        <h2>Contacts</h2>
+        <h3 id="fade-in">Facebook : Van Quang</h3>
+        <h3 id="fly-in">Phone : 0944389486</h3>
+        <h3 id="rotate-in">Instagram : vq812</h3>
+        <h3 id="zoom-in">Email : tvq08122002@gmail.com</h3>
+        <p id="any"><small><span class="accent"></span> Good <span class="accent"></span></small></p>
+    </div>
+
+    <div class="scrollblock" id="examples-pin">
+        <h2>Fontend</h2>
+        <h3 id="unpin">ABC</h3>
+    </div>
+
+    <div class="scrollblock" id="examples-parallax">
+        <h2 id="parallax1">Parallax</h2>
+        <h3 id="parallax2">Parallax</h3>
+        <h3 id="parallax3">Parallax</h3>
+    </div>
+    <div class="scrollblock abc" id="examples-parallax">
+        <h1 style="margin: 0;" id="word">Word word</h1>
+    </div>
+
+    <div class="scrollblock " id="examples-easing">
+        <h2 id="easing">Have a good day</h2>
+        <div id="easing_bottom"></div>
+    </div>
+
+    <div id="momoland">
+        <div class="wrapper">
+
+            <div id="carbon-block"></div>
+            <div>
+                <script type="text/javascript">
+                    <!--
+                    google_ad_client = "ca-pub-2783044520727903";
+                    /* jQuery_demo */
+                    google_ad_slot = "2780937993";
+                    google_ad_width = 728;
+                    google_ad_height = 90;
+                    //-->
+                </script>
+                <script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script src="simp.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            tilter('.tilter', {
+                perspective: 300,
+                maxTilt: 4,
+                mantain: false,
+                fx3d: true,
+                fxDistance: 10,
+            });
+        });
+    </script>
+    <script src="old.js" defer>
+    </script>
+    <script src="add.js" defer></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script>
+        try {
+            fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
+                method: 'HEAD',
+                mode: 'no-cors'
+            })).then(function(response) {
+                return true;
+            }).catch(function(e) {
+                var carbonScript = document.createElement("script");
+                carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+                carbonScript.id = "_carbonads_js";
+                document.getElementById("carbon-block").appendChild(carbonScript);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+
+
+
+
+
+    <script src="index.js"></script>
+    <div class="img-magnifier-container">
+        <img class="img" id="myimage" src="./aston-ma1.jpg" width="600" height="400">
+        <h1 style="position:absolute;top: 40%;
+        left: 50%;
+        transform: translate(-50%, 50%);">Backend</h1>
+    </div>
+    <script>
+        const $$ = s =>
+            Array.prototype.slice.call(
+                document.querySelectorAll(s)
+            )
+        const isEl = obj => obj instanceof HTMLElement
+        const isStr = obj => Object.prototype.toString.call(obj) === '[object String]'
+
+        const cursorDot = ({
+            diameter = 80,
+            borderWidth = 1,
+            borderColor = '#fff',
+            easing = 4,
+            background = 'transparent'
+        } = {}) => {
+            let inited = false
+            const alt = {
+                x: 0,
+                y: 0,
+                o: 1,
+                d: diameter
+            }
+            const cur = {
+                x: 0,
+                y: 0,
+                o: 0,
+                d: diameter
+            }
+            const dot = document.createElement('div')
+            const tim = easing / 15
+            dot.style = `position:fixed;top:0;left:0;border-radius:100%;pointer-events:none;opacity:0;height:${diameter}px;width:${diameter}px;background:${background};border:${borderWidth}px solid ${borderColor};mix-blend-mode:exclusion;transition:background ${tim}s,border ${tim}s`
+
+            document.addEventListener('mousemove', e => {
+                alt.x = e.clientX
+                alt.y = e.clientY
+                dot.style.opacity = 1
+                if (!inited) {
+                    document.body.append(dot)
+                    cur.x = alt.x
+                    cur.y = alt.y
+                    inited = true
+                    draw()
+                }
+            })
+
+            const draw = () => {
+                const dX = alt.x - cur.x
+                const dY = alt.y - cur.y
+                cur.x += (dX / easing)
+                cur.y += (dY / easing)
+                const t3d = `translate3d(${cur.x - cur.d / 2}px,${cur.y - cur.d / 2}px,0)`
+                dot.style.webkitTransform = t3d
+                dot.style.transform = t3d
+
+                const dO = alt.o - cur.o
+                cur.o += dO / easing
+                dot.style.opacity = cur.o
+
+                const dD = alt.d - cur.d
+                cur.d += dD / easing
+                dot.style.height = cur.d + 'px'
+                dot.style.width = cur.d + 'px'
+
+                try {
+                    requestAnimationFrame(draw)
+                } catch (_) {
+                    setImmediate(draw)
+                }
+            }
+
+            dot.over = (any, style) => {
+                const fn = el => {
+                    el.addEventListener('mouseover', _ => {
+                        if (style.background) dot.style.backgroundColor = style.background
+                        if (style.borderColor) dot.style.borderColor = style.borderColor
+                        if (style.scale) alt.d = diameter * style.scale
+                    })
+                    el.addEventListener('mouseout', _ => {
+                        if (style.background) dot.style.backgroundColor = background
+                        if (style.borderColor) dot.style.borderColor = borderColor
+                        if (style.scale) alt.d = diameter
+                    })
+                }
+                if (isEl(any)) fn(any)
+                else if (isStr(any)) $$(any).forEach(fn)
+            }
+
+            return dot
+        }
+        1
+    </script>
+    <script>
+        const cursor = cursorDot({
+            // diameter in pixels
+            diameter: 100,
+
+            // border width
+            borderWidth: 50,
+
+            // border color
+            borderColor: '#fff',
+
+            // easing
+            easing: 10,
+
+            // background
+            background: 'transparent'
+        })
+    </script>
+    <script>
+        cursor.over("#title", {
+            borderWidth: 70,
+        });
+
+        cursor.over(".element-2", {
+            borderColor: "rgba(255,255,255,.38)"
+        });
+
+        cursor.over(".element-3", {
+            scale: 0.5,
+            background: "#fff"
+        });
+    </script>
+    <script>
+        /* Initiate Magnify Function
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            with the id of the image, and the strength of the magnifier glass:*/
+        magnify("myimage", 3);
+    </script>
+    <script>
+        $(window).on('load', function() {
+            $('.div2').delay(100).fadeOut('fast');
+            // alert('Tai khoan : database@gmail.com')
+            // alert('Mat khau : 111')
+        })
+        $(document).ready(function() {
+
+            // initialize the plugin, pass in the class selector for the sections of content (blocks)
+            var scrollorama = $.scrollorama({
+                blocks: '.scrollblock'
+            });
+
+            // assign function to add behavior for onBlockChange event
+            scrollorama.onBlockChange(function() {
+                var i = scrollorama.blockIndex;
+                $('#console')
+                    .css('display', 'block')
+                    .text('onBlockChange | blockIndex:' + i + ' | current block: ' + scrollorama.settings.blocks.eq(i).attr('id'));
+            });
+
+            // lettering.js for coolness  
+            $('.char9').css('padding-left', '6px');
+
+            // animate the title letters to explode
+            scrollorama
+                .animate('#title', {
+                    duration: 500,
+                    property: 'margin-left',
+                    star: 200,
+                    end: -1000
+                })
+                .animate('#author', {
+                    duration: 10,
+                    property: 'z-index',
+                    end: 0
+                });
+
+            $('#title span').each(function() {
+                scrollorama
+                    .animate($(this), {
+                        duration: 400,
+                        property: 'top',
+                        end: Math.random() * 120 - 180
+                    })
+                    .animate($(this), {
+                        duration: 300,
+                        property: 'rotate',
+                        start: 0,
+                        end: Math.random() * 720 - 360
+                    });
+            });
+
+            // animate some examples
+            scrollorama
+                .animate('#unpin', {
+                    duration: 500,
+                    property: 'padding-top',
+                    start: 400,
+                    pin: true
+                })
+                .animate('#fade-in', {
+                    delay: 400,
+                    duration: 300,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#fly-in', {
+                    delay: 400,
+                    duration: 300,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#rotate-in', {
+                    duration: 800,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#zoom-in', {
+                    delay: 200,
+                    duration: 600,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                })
+                .animate('#any', {
+                    delay: 700,
+                    duration: 200,
+                    property: 'opacity',
+                    start: 0
+                })
+                .animate('#any', {
+                    delay: 800,
+                    duration: 200,
+                    property: 'letter-spacing',
+                    start: 18
+                });
+
+            // animate the parallaxing
+            scrollorama
+                .animate('#parallax2', {
+                    delay: 400,
+                    duration: 600,
+                    property: 'top',
+                    start: 800,
+                    end: -800
+                })
+                .animate('#parallax3', {
+                    delay: 200,
+                    duration: 1200,
+                    property: 'top',
+                    start: 500,
+                    end: -500
+                })
+                .animate('#word', {
+                    delay: 200,
+                    duration: 1400,
+                    property: 'left',
+                    start: -1400,
+                    end: 0
+                });
+
+
+            // animate some easing examples
+            var $easing = $('#easing'),
+                $clone = $easing.clone().appendTo('#examples-easing')
+                .css({
+                    position: 'relative',
+                    top: '-2.95em'
+                })
+                .lettering();
+            $easing.css({
+                color: '#131420',
+                textShadow: '0 1px 0 #363959'
+            });
+            easing_array = ['easeOutBounce',
+                'easeOutQuad',
+                'easeOutCubic',
+                'easeOutQuart',
+                'easeOutQuint',
+                'easeOutExpo'
+            ];
+            $clone.find('span')
+                .each(function(idx, el) {
+                    scrollorama.animate($(this), {
+                        delay: 400,
+                        duration: 200,
+                        property: 'top',
+                        end: 300,
+                        easing: easing_array[idx]
+                    });
+                })
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2821890-9']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</body>
+
+</html>
